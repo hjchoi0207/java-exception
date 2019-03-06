@@ -5,7 +5,7 @@ Exception(예외처리)이란 프로그램에 문제가 있을 때 프로그램 
 판단에 맡기는 예외처리를 **UnCheckedException** 이라고 한다.
 
 
-### 예제 1 try~catch
+## 예제 1 try~catch
 ```java
 public class TryCatch {
 
@@ -50,9 +50,9 @@ msg : 3
 Exception After
 ```
 
-***
 
-### 예제 2 finally
+
+## 예제 2 finally
 
 ```java
 import java.util.Scanner;
@@ -115,9 +115,9 @@ After Exception
 예제 2의 실행결과이다. 배열의 크기보다 큰(length+1)인덱스에 대하여 연산을 try에서 시도하였고 그로인해 밑에줄에 System.out.println("never exec");
 문장은 실행되지 않는다 그러나 finally에 선언된 System.out.println("Always exec");은 문제없이 실행되는 것을 보여준다.
 
-***
 
-### 예제 3 throws
+
+## 예제 3 throws
 
 ```java
 public class Throws {
@@ -149,3 +149,20 @@ public class Throws {
 
 }
 ```
+**throws Exception** 은 자기 자신을 호출한 메소드에게 오류처리를 넘겨주는 것이다. 예제는 first() -> second -> third() 순으로 호출을 하였고
+third()메소드에서는 정수를 0으로 나누는 오류를 범하였다. 하지만 이 오류에 대한 예외처리는 third()메소드가 아닌 second()메소드에게 넘어가고
+second 또한 throws Exceprion을 하였으니 first()메소드에게 까지 오류에 대한 예외처리를 넘기게 된다.
+
+```
+java.lang.ArithmeticException: / by zero
+	at exception.Throws.third(Throws.java:27)
+	at exception.Throws.second(Throws.java:23)
+	at exception.Throws.first(Throws.java:19)
+	at exception.Throws.main(Throws.java:10)
+```
+실행 결과를 보면 throws가 발생했다는 것을 확인 할 수 있다.
+
+***
+
+- 예외 처리에는 두가지가 있다는 것을 배웟다 하나는 try, catch, finally 또 하나는 throws이다. 예외처리를 사용하는것 자체는 난이도가 높지 않지만
+프로그램을 하다가 발생하는 무수히 많은 예외에 대해 내가 직접 예외처리를 할 것인지 아니면 넘겨버릴 것인지를 그때마다 상황을 잘판단해서 사용하는 것이 중요하다
